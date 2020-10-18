@@ -19,5 +19,37 @@ router.get('/prehistoric-creatures',(req,res)=>{
     res.render('prehistoric_creatures/index.ejs', {creatures: creatureData})
 })
 
+// CREATURE NEW Route
+router.get('/prehistoric-creatures/new',(req,res)=>{
+    res.render('prehistoric_creatures/new')
+})
+
+
+// CREATURES SHOW ROUTE
+router.get('/prehistoric-creatures/:idx',(req,res)=>{
+    let creatures = fs.readFileSync('./prehistoric-creatures.json')
+    let creatureData = JSON.parse(creatures)
+
+    // get array index from url parameter
+    let creatureIndex = parseInt(req.params.idx)
+
+    // console.log(dinoData[dinoIndex])
+
+    res.render('prehistoric_creatures/show', {creature: creatureData[creatureIndex], creatureId: creatureIndex})
+})
+
+
+// CREATURES POST Route
+router.post('/prehistoric-creatures',(req,res)=>{
+    // console.log(req.body)
+    let creatures = fs.readFileSync('./prehistoric-creatures.json')
+    let creatureData = JSON.parse(creatures)
+    creatureData.push(req.body) // push the new dino to the array
+    // save the new dinoData to the dinosaurs.json file
+    // JSON.stringify does the opposite of JSON.parse
+    fs.writeFileSync('./prehistoric-creatures.json', JSON.stringify(creatureData))
+    // redirect to the GET /dinosaurs route (index)
+    res.redirect('/prehistoric-creatures')
+})
 
 module.exports = router
