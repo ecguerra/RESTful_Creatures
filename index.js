@@ -20,6 +20,8 @@ app.use('/',prehistoricCreatures)
 const dinosaurs = require('./controllers/dinosaurs')
 app.use('/',dinosaurs)
 
+app.use(express.static('public'))
+
 app.listen(8000, ()=>{
     console.log('Port 8000')
 })

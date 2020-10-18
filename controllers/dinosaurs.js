@@ -50,7 +50,4 @@ router.post('/dinosaurs',(req,res)=>{
     res.redirect('/dinosaurs')
 })
 
-
-
-
 module.exports = router
