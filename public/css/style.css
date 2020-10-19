@@ -10,6 +10,7 @@
 
 body {
     font-family: 'Rubik', sans-serif;
+    color: midnightblue;
     background: darkseagreen;
     display: flex;
     flex-direction: column;
@@ -43,7 +44,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center; 
-    width: 50%;
+    width: 48%;
     height: 70%;
     margin: 1rem;
 }
@@ -57,18 +58,24 @@ main {
 }
 
 .image-container {
+    width: 95%;
     height: 60%;
-    overflow: hidden; 
+    overflow: hidden;
+    max-width: 385px; 
 }
 
 img {
+    height: 100%;
     width: 100%;
+    object-fit: cover;
 }
 
 .img-label {
     width: 100%;
     height: 10%;
     background-color: midnightblue;
+    font-weight: 700;
+    max-width: 385px; 
 }
 
 h1, h2 {
@@ -93,3 +100,26 @@ a:visited {
 a:active {
     color: midnightblue;
 }
+
+input[type=text] {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    border: none;
+    padding: 0.2rem;
+}
+
+input[type=submit] {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    border: none;
+    background-color: aliceblue;
+    color: midnightblue;
+    padding: 0.3rem;
+    margin: 0.2rem;
+}
+
+input[type=submit]:hover {
+    background-color: midnightblue;
+    color:aliceblue;
+}
+
