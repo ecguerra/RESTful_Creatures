@@ -8,6 +8,10 @@
 
 <ul>
     <% creatures.forEach(creature =>{ %>
-        <li>Type: <%= creature.type %> </li>
+        <li><a href="/prehistoric-creatures/<%=creatures.indexOf(creature)%>">
+        <%= creature.type %></a></li>
     <% }) %>
 </ul>
+<p class="new_button">
+    <a href="/prehistoric-creatures/new">Add a new creature!</a>
+</p>

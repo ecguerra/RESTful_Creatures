@@ -8,6 +8,10 @@
 
 <ul>
     <% dinosaurs.forEach(dino =>{ %>
-        <li>Name: <%= dino.name %> </br> Type: <%= dino.type %> </li>
+        <li><a href="/dinosaurs/<%=dinosaurs.indexOf(dino)%>">
+            <%= dino.name %> the <%= dino.type %></a></li>
     <% }) %>
 </ul>
+<p class="new_button">
+    <a href="/dinosaurs/new">Add a new dinosaur!</a>
+</p>
