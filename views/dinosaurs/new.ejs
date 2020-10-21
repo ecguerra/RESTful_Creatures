@@ -1,11 +1,15 @@
 <h1>Add a new Dino</h1>
 
 <form action="/dinosaurs" method="POST">
+    <label for="dinosaurName">Name</label>
+    <input type="text" name="name" id="dinosaurName">
+    
     <label for="dinosaurType">Type</label>
     <input type="text" name="type" id="dinosaurType">
 
-    <label for="dinosaurName">Name</label>
-    <input type="text" name="name" id="dinosaurName">
+
+    <label for="dinosaurUrl">Image URL</label>
+    <input type="text" name="img_url" id="dinosaurUrl">
 
     <input type="submit"/>
 </form>

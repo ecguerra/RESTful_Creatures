@@ -3,7 +3,7 @@ const router = express.Router()
 const fs = require('fs')
 
 // CREATURES Index Route
-router.get('/prehistoric-creatures',(req,res)=>{
+router.get('/',(req,res)=>{
     let creatures = fs.readFileSync('./prehistoric-creatures.json') // read the json file, turn into string
     let creatureData = JSON.parse(creatures) // convert the string to an array
     
@@ -20,13 +20,13 @@ router.get('/prehistoric-creatures',(req,res)=>{
 })
 
 // CREATURE NEW Route
-router.get('/prehistoric-creatures/new',(req,res)=>{
+router.get('/new',(req,res)=>{
     res.render('prehistoric_creatures/new')
 })
 
 
 // CREATURES SHOW ROUTE
-router.get('/prehistoric-creatures/:idx',(req,res)=>{
+router.get('/:idx',(req,res)=>{
     let creatures = fs.readFileSync('./prehistoric-creatures.json')
     let creatureData = JSON.parse(creatures)
 
@@ -40,7 +40,7 @@ router.get('/prehistoric-creatures/:idx',(req,res)=>{
 
 
 // CREATURES POST Route
-router.post('/prehistoric-creatures',(req,res)=>{
+router.post('/',(req,res)=>{
     // console.log(req.body)
     let creatures = fs.readFileSync('./prehistoric-creatures.json')
     let creatureData = JSON.parse(creatures)
@@ -49,6 +49,38 @@ router.post('/prehistoric-creatures',(req,res)=>{
     // JSON.stringify does the opposite of JSON.parse
     fs.writeFileSync('./prehistoric-creatures.json', JSON.stringify(creatureData))
     // redirect to the GET /dinosaurs route (index)
+    res.redirect('/prehistoric-creatures')
+})
+
+// CREATURES GET EDIT Route
+
+router.get('/edit/:idx',(req,res)=>{
+    let creatures = fs.readFileSync('./prehistoric-creatures.json')
+    let creatureData = JSON.parse(creatures)
+    res.render('prehistoric_creatures/edit',{creature: creatureData[req.params.idx], creatureId: req.params.idx})
+})
+
+router.put('/:idx', (req,res)=>{
+    let creatures = fs.readFileSync('./prehistoric-creatures.json')
+    let creatureData = JSON.parse(creatures)
+
+    creatureData[req.params.idx].name = req.body.name
+    creatureData[req.params.idx].type = req.body.type
+    creatureData[req.params.idx].img_url = req.body.img_url
+
+    fs.writeFileSync('./prehistoric-creatures.json', JSON.stringify(creatureData))
+    
+    res.redirect(`/prehistoric-creatures/${req.params.idx}`)
+})
+
+// CREATURES DELETE Route
+router.delete('/:idx', (req, res)=>{
+    let creatures = fs.readFileSync('./prehistoric-creatures.json')
+    let creatureData = JSON.parse(creatures)
+
+    creatureData.splice(req.params.idx,1)
+
+    fs.writeFileSync('./prehistoric-creatures.json', JSON.stringify(creatureData))
     res.redirect('/prehistoric-creatures')
 })
 

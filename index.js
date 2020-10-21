@@ -2,7 +2,9 @@ const express = require('express')
 const app = express()
 const ejsLayouts = require('express-ejs-layouts')
 const fs = require('fs')
+const methodOverride = require('method-override')
 
+app.use(methodOverride('_method'))
 app.set('view engine','ejs')
 app.use(ejsLayouts)
 
@@ -15,10 +17,10 @@ app.get('/',(req,res)=>{
 })
 
 const prehistoricCreatures = require('./controllers/prehistoric_creatures')
-app.use('/',prehistoricCreatures)
+app.use('/prehistoric-creatures',prehistoricCreatures)
 
 const dinosaurs = require('./controllers/dinosaurs')
-app.use('/',dinosaurs)
+app.use('/dinosaurs',dinosaurs)
 
 app.use(express.static('public'))
 

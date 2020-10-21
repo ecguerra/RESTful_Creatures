@@ -7,9 +7,13 @@
 </form>
 
 <ul>
-    <% creatures.forEach(creature =>{ %>
-        <li><a href="/prehistoric-creatures/<%=creatures.indexOf(creature)%>">
-        <%= creature.type %></a></li>
+    <% creatures.forEach((creature,i) =>{ %>
+        <li><a href="/prehistoric-creatures/<%= i %>">
+        <%= creature.type %></a>
+        <form method="POST" action="/prehistoric-creatures/<%=i %>/?_method=DELETE">
+            <input type="submit" value="Delete?">
+            </form>
+    </li>
     <% }) %>
 </ul>
 <p class="new_button">
